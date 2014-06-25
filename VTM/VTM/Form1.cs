@@ -17,6 +17,7 @@ namespace VTM
         public Form1()
         {
             InitializeComponent();
+            MessageBox.Show("Hello world");
         }
 
     }
