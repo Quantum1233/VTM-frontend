@@ -10,3 +10,6 @@ d:\documents\visual studio 2012\Projects\VTM\VTM\obj\Debug\VTM.pdb
 D:\Documents\GitHub\VTM\VTM\VTM\bin\Debug\VTM.exe.config
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.exe
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.pdb
+C:\Users\Rick\Documents\GitHub\VTM-frontend\VTM\VTM\bin\Debug\VTM.exe.config
+C:\Users\Rick\Documents\GitHub\VTM-frontend\VTM\VTM\obj\Debug\VTM.exe
+C:\Users\Rick\Documents\GitHub\VTM-frontend\VTM\VTM\obj\Debug\VTM.pdb
