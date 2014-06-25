@@ -10,3 +10,9 @@ d:\documents\visual studio 2012\Projects\VTM\VTM\obj\Debug\VTM.pdb
 D:\Documents\GitHub\VTM\VTM\VTM\bin\Debug\VTM.exe.config
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.exe
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.pdb
+D:\Documents\GitHub\VTM\VTM\VTM\bin\Debug\VTM.exe
+D:\Documents\GitHub\VTM\VTM\VTM\bin\Debug\VTM.pdb
+D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.Form1.resources
+D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.Properties.Resources.resources
+D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.csproj.GenerateResource.Cache
