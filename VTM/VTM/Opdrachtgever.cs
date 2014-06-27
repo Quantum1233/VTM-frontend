@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VTM
 {
-    class Opdrachtgever
+    public class Opdrachtgever
     {
         public int Id { get; set; }
         public string Naam { get; set; }

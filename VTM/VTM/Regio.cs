@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VTM
 {
-    class Regio
+    public class Regio
     {
         public int Id { get; set; }
         public string Naam { get; set; }

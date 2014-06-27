@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VTM
 {
-    class Manager
+    public class Manager
     {
         private List<Opdrachtgever> opdrachtgevers;
         public List<Opdrachtgever> Opdrachtgevers { get { return opdrachtgevers; } }
@@ -24,7 +24,10 @@ namespace VTM
         public List<Regio> Regios { get { return regios; } }
         private List<Locatie> locaties;
         public List<Locatie> Locaties { get { return locaties; } }
+        private List<Account> accounts;
+        public List<Account> Accounts { get { return accounts; } }
         private Database database;
+        public Account LoggedIn { get; set; }
 
         public Manager() {
             database = new Database(this);
@@ -36,7 +39,18 @@ namespace VTM
             this.suppliers = database.GetAllSuppliers();
             this.regios = database.GetAllRegios();
             this.locaties = database.GetAllLocaties();
+            this.accounts = database.GetAllAccounts();
             database.BindOpdrachtgeverData();
+        }
+
+        public bool LogIn(string Gebruikersnaam, string Wachtwoord) {
+            foreach (Account a in accounts) {
+                if (a.Gebruikersnaam == Gebruikersnaam && a.Wachtwoord == Wachtwoord) {
+                    LoggedIn = a;
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -16,8 +16,9 @@ C:\Users\Rick\Documents\GitHub\VTM-frontend\VTM\VTM\obj\Debug\VTM.pdb
 D:\Documents\GitHub\VTM\VTM\VTM\bin\Debug\VTM.exe
 D:\Documents\GitHub\VTM\VTM\VTM\bin\Debug\VTM.pdb
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.csprojResolveAssemblyReference.cache
-D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.Form1.resources
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.Properties.Resources.resources
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.csproj.GenerateResource.Cache
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\RdlCompile.cache
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\RdlCompile.compiled
+D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.Login.resources
+D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.FrontEnd.resources

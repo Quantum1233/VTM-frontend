@@ -11,14 +11,15 @@ using System.Windows.Forms;
 
 namespace VTM
 {
-    public partial class Form1 : Form
+    public partial class FrontEnd : Form
     {
         Manager manager;
 
-        public Form1()
+        public FrontEnd(Manager manager)
         {
             InitializeComponent();
-            manager = new Manager();
+            this.manager = manager;
+            lblLoggedInAs.Text = manager.LoggedIn.Voornaam + " " + manager.LoggedIn.Achternaam;
             SetUpGui();
         }
 
@@ -36,9 +37,12 @@ namespace VTM
 
             // Opdrachtgevers
             cbOrderCompany.Items.Clear();
+            cbOrderCompany.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbOrderCompany.AutoCompleteSource = AutoCompleteSource.CustomSource;
             foreach (Opdrachtgever o in manager.Opdrachtgevers)
             {
                 cbOrderCompany.Items.Add(o.Naam);
+                cbOrderCompany.AutoCompleteCustomSource.Add(o.Naam);
             }
 
             // Soort metingen
@@ -57,24 +61,38 @@ namespace VTM
 
             // Herkomsten
             cbOrigin.Items.Clear();
+            cbOrigin.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbOrigin.AutoCompleteSource = AutoCompleteSource.CustomSource;
             foreach (Herkomst h in manager.Herkomsten) {
                 cbOrigin.Items.Add(h.Naam);
+                cbOrigin.AutoCompleteCustomSource.Add(h.Naam);
             }
 
             // Ladingen
             cbCargo.Items.Clear();
+            cbCargo.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbCargo.AutoCompleteSource = AutoCompleteSource.CustomSource;
             foreach (Lading l in manager.Ladingen) {
                 cbCargo.Items.Add(l.Naam);
+                cbCargo.AutoCompleteCustomSource.Add(l.Naam);
             }
 
             // Suppliers
             cbSupplier.Items.Clear();
+            cbSupplier.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbSupplier.AutoCompleteSource = AutoCompleteSource.CustomSource;
             foreach (Supplier s in manager.Suppliers) {
                 cbSupplier.Items.Add(s.Naam);
+                cbSupplier.AutoCompleteCustomSource.Add(s.Naam);
             }
+
+            // Locaties
+            cbLocation.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
             // Weeknr
             tbWeeknr.Text = Convert.ToString(getWeekNr(DateTime.Now));
+
         }
 
         // Weeknummer berekenen
@@ -105,26 +123,32 @@ namespace VTM
         {
             cbSupplier.Items.Clear();
             cbLocation.Items.Clear();
+            cbSupplier.AutoCompleteCustomSource.Clear();
+            cbLocation.AutoCompleteCustomSource.Clear();
             foreach (Opdrachtgever o in manager.Opdrachtgevers) {
                 if (o.Naam == cbOrderCompany.SelectedItem.ToString())
                 {
                     foreach (Supplier s in o.Suppliers)
                     {
                         cbSupplier.Items.Add(s.Naam);
+                        cbSupplier.AutoCompleteCustomSource.Add(s.Naam);
                     }
 
                     foreach (Locatie l in o.Locaties) {
                         cbLocation.Items.Add(l.Naam);
+                        cbLocation.AutoCompleteCustomSource.Add(l.Naam);
                     }
                 }
             }
         }
 
+        //****************************************** Checks of gaswaarde is ingevuld ************************************************************************
+
         private void tbPid_TextChanged(object sender, EventArgs e) {
             if (tbPid.Text != "") {
                 cbxPid.Checked = true;
             }
-            else{
+            else {
                 cbxPid.Checked = false;
             }
         }
@@ -257,7 +281,7 @@ namespace VTM
 
         private void tbEthyleneOxide_TextChanged(object sender, EventArgs e) {
             if (tbEthyleneOxide.Text != "") {
-               cbxEthyleneOxide.Checked = true;
+                cbxEthyleneOxide.Checked = true;
             }
             else {
                 cbxEthyleneOxide.Checked = false;
@@ -311,11 +335,12 @@ namespace VTM
 
         private void tbHydrogen_TextChanged(object sender, EventArgs e) {
             if (tbHydrogen.Text != "") {
-               cbxHydrogen.Checked = true;
+                cbxHydrogen.Checked = true;
             }
             else {
                 cbxHydrogen.Checked = false;
             }
         }
+
     }
 }

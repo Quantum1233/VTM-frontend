@@ -312,6 +312,29 @@ namespace VTM
             return tempList;
         }
 
+        // Alle InlogAccounts uit database halen
+        public List<Account> GetAllAccounts() {
+            String sql = "SELECT * FROM [WerknemerFrontEnd]";
+            OleDbCommand command = new OleDbCommand(sql, connection);
+            List<Account> tempList = new List<Account>();
+
+            try {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read()) {
+                    tempList.Add(new Account(Convert.ToInt32(reader["Id"]), Convert.ToString(reader["Gebruikersnaam"]), Convert.ToString(reader["Wachtwoord"]), Convert.ToString(reader["Voornaam"]), Convert.ToString(reader["Achternaam"])));
+                }
+            }
+            catch {
+                MessageBox.Show("Error reading database", "Error");
+            }
+            finally {
+                connection.Close();
+            }
+            return tempList;
+        }
+
         // gegevens binden aan opdrachtgevers (Supplier, Locatie)
         public void BindOpdrachtgeverData()
         {
