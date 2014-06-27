@@ -20,6 +20,10 @@ namespace VTM
         public List<Lading> Ladingen { get { return ladingen; } }
         private List<Supplier> suppliers;
         public List<Supplier> Suppliers { get { return suppliers; } }
+        private List<Regio> regios;
+        public List<Regio> Regios { get { return regios; } }
+        private List<Locatie> locaties;
+        public List<Locatie> Locaties { get { return locaties; } }
         private Database database;
 
         public Manager() {
@@ -30,7 +34,9 @@ namespace VTM
             this.herkomsten = database.GetAllHerkomsten();
             this.ladingen = database.GetAllLadingen();
             this.suppliers = database.GetAllSuppliers();
-            database.BindOpdrachtgeverSupplier();
+            this.regios = database.GetAllRegios();
+            this.locaties = database.GetAllLocaties();
+            database.BindOpdrachtgeverData();
         }
     }
 }

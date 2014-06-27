@@ -241,8 +241,79 @@ namespace VTM
             return tempList;
         }
 
-        // Alle Suppliers binden aan de juiste opdrachtgevers
-        public void BindOpdrachtgeverSupplier()
+        // Alle Regio's uit database halen
+        public List<Regio> GetAllRegios() {
+            String sql = "SELECT * FROM [Regio]";
+            OleDbCommand command = new OleDbCommand(sql, connection);
+            List<Regio> tempList = new List<Regio>();
+
+            try {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read()) {
+                    tempList.Add(new Regio(Convert.ToInt32(reader["RegioId"]), Convert.ToString(reader["Regio"])));
+                }
+            }
+            catch {
+                MessageBox.Show("Error reading database at Regio", "Error");
+            }
+            finally {
+                connection.Close();
+            }
+
+            tempList.Sort(delegate(Regio p1, Regio p2) {
+                return p1.Naam.CompareTo(p2.Naam);
+            });
+
+            return tempList;
+        }
+
+        // Alle Locaties uit database halen
+        public List<Locatie> GetAllLocaties() {
+            String sql = "SELECT * FROM [Locatie]";
+            OleDbCommand command = new OleDbCommand(sql, connection);
+            List<Locatie> tempList = new List<Locatie>();
+
+            try {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                Regio regio = null;
+
+                while (reader.Read()) {
+                    int locatieId = Convert.ToInt32(reader["LocatieID"]);
+                    string locatieNaam = Convert.ToString(reader["Naam"]);
+                    int regioId = 0;
+                    int opdrachtgeverId = Convert.ToInt32(reader["OpdrachtgeverID"]);
+                    if (reader["RegioID"] != System.DBNull.Value) {
+                        regioId = Convert.ToInt32(reader["RegioID"]);
+                    }
+
+                    foreach(Regio r in manager.Regios){
+                        if (r.Id == regioId) {
+                            regio = r;
+                        }
+                    }
+                    tempList.Add(new Locatie(locatieId, locatieNaam, regio, opdrachtgeverId));
+                }
+            }
+            catch {
+                MessageBox.Show("Error reading database at Locatie", "Error");
+            }
+            finally {
+                connection.Close();
+            }
+
+            tempList.Sort(delegate(Locatie p1, Locatie p2) {
+                return p1.Naam.CompareTo(p2.Naam);
+            });
+
+            return tempList;
+        }
+
+        // gegevens binden aan opdrachtgevers (Supplier, Locatie)
+        public void BindOpdrachtgeverData()
         {
             String sql = "SELECT * FROM [OpdrachtgeverSupplier]";
             OleDbCommand command = new OleDbCommand(sql, connection);
@@ -265,10 +336,18 @@ namespace VTM
                         }
                     }
                 }
+
+                foreach (Opdrachtgever o in manager.Opdrachtgevers) {
+                    foreach (Locatie l in manager.Locaties) {
+                        if (l.OpdrachtgeverId == o.Id) {
+                            o.Locaties.Add(l);
+                        }
+                    }
+                }
             }
             catch
             {
-                MessageBox.Show("Error reading database", "Error");
+                MessageBox.Show("Error reading database at OpdrachtgeverSupplier", "Error");
             }
             finally
             {
