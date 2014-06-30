@@ -54,6 +54,7 @@
     <Compile Include="FrontEnd.Designer.cs">
       <DependentUpon>FrontEnd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Huis.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>

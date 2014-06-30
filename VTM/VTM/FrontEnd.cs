@@ -177,6 +177,11 @@ namespace VTM
                     }
                 }
             }
+
+            Huis test = new Huis(5, "test", true);
+            List<Huis> huizen = new List<Huis>();
+            huizen.Add(test);
+
         }
 
         public void CheckTextbox(TextBox tb, CheckBox cbx) {
