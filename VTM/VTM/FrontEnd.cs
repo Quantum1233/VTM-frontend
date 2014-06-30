@@ -14,14 +14,16 @@ namespace VTM
     public partial class FrontEnd : Form
     {
         Manager manager;
+        Login loginForm;
 
-        public FrontEnd(Manager manager)
+        public FrontEnd(Manager manager, Login loginForm)
         {
             InitializeComponent();
             this.manager = manager;
             lblLoggedInAs.Text = manager.LoggedIn.Voornaam + " " + manager.LoggedIn.Achternaam;
             SetUpGui();
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.loginForm = loginForm;
         }
 
         private void SetUpGui()
@@ -288,6 +290,11 @@ namespace VTM
 
         private void tbHydrogen_TextChanged(object sender, EventArgs e) {
             CheckTextbox(tbHydrogen, cbxHydrogen);
+        }
+
+        private void FrontEnd_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            loginForm.Close();
         }
 
     }

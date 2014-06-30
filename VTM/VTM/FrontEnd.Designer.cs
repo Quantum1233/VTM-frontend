@@ -78,6 +78,9 @@
             this.tbDate = new System.Windows.Forms.TextBox();
             this.tbTime = new System.Windows.Forms.TextBox();
             this.gbControls = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnScan = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.gbRecordControl = new System.Windows.Forms.GroupBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -224,9 +227,6 @@
             this.cbxPid = new System.Windows.Forms.CheckBox();
             this.lblLoggedInAs = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnScan = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.gbTop.SuspendLayout();
             this.gbMid.SuspendLayout();
@@ -742,6 +742,42 @@
             this.gbControls.Size = new System.Drawing.Size(265, 161);
             this.gbControls.TabIndex = 26;
             this.gbControls.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Image = global::VTM.Properties.Resources.ic_mail1;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(3, 14);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(258, 45);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Mail naar planning";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnScan
+            // 
+            this.btnScan.Image = global::VTM.Properties.Resources._50c5a38510091_Turboscan;
+            this.btnScan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnScan.Location = new System.Drawing.Point(3, 61);
+            this.btnScan.Margin = new System.Windows.Forms.Padding(2);
+            this.btnScan.Name = "btnScan";
+            this.btnScan.Size = new System.Drawing.Size(258, 45);
+            this.btnScan.TabIndex = 26;
+            this.btnScan.Text = "Scan";
+            this.btnScan.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = global::VTM.Properties.Resources._6a0120a9370e90970b014e5f81703d970c_800wi;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.Location = new System.Drawing.Point(3, 108);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(258, 45);
+            this.btnSave.TabIndex = 25;
+            this.btnSave.Text = "Record Opslaan";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // gbRecordControl
             // 
@@ -2211,42 +2247,6 @@
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Image = global::VTM.Properties.Resources.ic_mail1;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(3, 14);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(258, 45);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "Mail naar planning";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // btnScan
-            // 
-            this.btnScan.Image = global::VTM.Properties.Resources._50c5a38510091_Turboscan;
-            this.btnScan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnScan.Location = new System.Drawing.Point(3, 61);
-            this.btnScan.Margin = new System.Windows.Forms.Padding(2);
-            this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(258, 45);
-            this.btnScan.TabIndex = 26;
-            this.btnScan.Text = "Scan";
-            this.btnScan.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Image = global::VTM.Properties.Resources._6a0120a9370e90970b014e5f81703d970c_800wi;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.Location = new System.Drawing.Point(3, 108);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(258, 45);
-            this.btnSave.TabIndex = 25;
-            this.btnSave.Text = "Record Opslaan";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::VTM.Properties.Resources.Untitled_5;
@@ -2282,6 +2282,7 @@
             this.MaximizeBox = false;
             this.Name = "FrontEnd";
             this.Text = "Van Tienen Milieuadvies";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrontEnd_FormClosed);
             this.gbTop.ResumeLayout(false);
             this.gbTop.PerformLayout();
             this.gbMid.ResumeLayout(false);

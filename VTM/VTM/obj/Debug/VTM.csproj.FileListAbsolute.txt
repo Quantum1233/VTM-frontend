@@ -22,3 +22,13 @@ D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\RdlCompile.cache
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\RdlCompile.compiled
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.Login.resources
 D:\Documents\GitHub\VTM\VTM\VTM\obj\Debug\VTM.FrontEnd.resources
+\\MX1\RedirectedFolders\RKrijntjes\My Documents\GitHub\VTM-frontend\VTM\VTM\bin\Debug\VTM.exe.config
+\\MX1\RedirectedFolders\RKrijntjes\My Documents\GitHub\VTM-frontend\VTM\VTM\obj\Debug\VTM.exe
+\\MX1\RedirectedFolders\RKrijntjes\My Documents\GitHub\VTM-frontend\VTM\VTM\obj\Debug\VTM.pdb
+\\MX1\RedirectedFolders\RKrijntjes\My Documents\GitHub\VTM-frontend\VTM\VTM\bin\Debug\VTM.exe
+\\MX1\RedirectedFolders\RKrijntjes\My Documents\GitHub\VTM-frontend\VTM\VTM\bin\Debug\VTM.pdb
+\\MX1\RedirectedFolders\RKrijntjes\My Documents\GitHub\VTM-frontend\VTM\VTM\obj\Debug\VTM.csprojResolveAssemblyReference.cache
+\\MX1\RedirectedFolders\RKrijntjes\My Documents\GitHub\VTM-frontend\VTM\VTM\obj\Debug\VTM.FrontEnd.resources
+\\MX1\RedirectedFolders\RKrijntjes\My Documents\GitHub\VTM-frontend\VTM\VTM\obj\Debug\VTM.Login.resources
+\\MX1\RedirectedFolders\RKrijntjes\My Documents\GitHub\VTM-frontend\VTM\VTM\obj\Debug\VTM.Properties.Resources.resources
+\\MX1\RedirectedFolders\RKrijntjes\My Documents\GitHub\VTM-frontend\VTM\VTM\obj\Debug\VTM.csproj.GenerateResource.Cache

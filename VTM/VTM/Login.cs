@@ -23,7 +23,7 @@ namespace VTM {
             if (tbUsername.Text != "") {
                 if (tbPassword.Text != "") {
                     if (manager.LogIn(tbUsername.Text, tbPassword.Text)) {
-                        FrontEnd frontend = new FrontEnd(manager);
+                        FrontEnd frontend = new FrontEnd(manager, this);
                         frontend.Show();
                         this.Hide();
                     }
