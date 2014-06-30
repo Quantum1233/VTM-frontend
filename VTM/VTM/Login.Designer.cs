@@ -99,6 +99,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(100, 100);
+            this.MaximizeBox = false;
             this.Name = "Login";
             this.Text = "Inloggen";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

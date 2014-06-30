@@ -299,7 +299,7 @@ namespace VTM
                 }
             }
             catch {
-                MessageBox.Show("Error reading database at Locatie", "Error");
+                MessageBox.Show("Error reading database at Locatie at Location", "Error");
             }
             finally {
                 connection.Close();
@@ -327,11 +327,118 @@ namespace VTM
                 }
             }
             catch {
-                MessageBox.Show("Error reading database", "Error");
+                MessageBox.Show("Error reading database at Account", "Error");
             }
             finally {
                 connection.Close();
             }
+            return tempList;
+        }
+
+        // Alle Werknemers uit database halen
+        public List<Werknemer> GetAllWerknemers() {
+            String sql = "SELECT * FROM [Werknemer]";
+            OleDbCommand command = new OleDbCommand(sql, connection);
+            List<Werknemer> tempList = new List<Werknemer>();
+
+            try {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read()) {
+                    tempList.Add(new Werknemer(Convert.ToInt32(reader["WerknemerID"]), Convert.ToString(reader["Naam"])));
+                }
+            }
+            catch {
+                MessageBox.Show("Error reading database at Employee", "Error");
+            }
+            finally {
+                connection.Close();
+            }
+
+            tempList.Sort(delegate(Werknemer p1, Werknemer p2) {
+                return p1.Naam.CompareTo(p2.Naam);
+            });
+
+            return tempList;
+        }
+
+        // Alle Resultaten uit database halen
+        public List<Resultaat> GetAllResultaten() {
+            String sql = "SELECT * FROM [Resultaat]";
+            OleDbCommand command = new OleDbCommand(sql, connection);
+            List<Resultaat> tempList = new List<Resultaat>();
+
+            try {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read()) {
+                    tempList.Add(new Resultaat(Convert.ToInt32(reader["ResultaatID"]), Convert.ToString(reader["Resultaat"])));
+                }
+            }
+            catch {
+                MessageBox.Show("Error reading database at Result", "Error");
+            }
+            finally {
+                connection.Close();
+            }
+            return tempList;
+        }
+
+        // Alle adviesen uit de database halen
+        public List<Advies> GetAllAdviesen() {
+            String sql = "SELECT * FROM [Advies]";
+            OleDbCommand command = new OleDbCommand(sql, connection);
+            List<Advies> tempList = new List<Advies>();
+
+            try {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read()) {
+                    tempList.Add(new Advies(Convert.ToInt32(reader["AdviesID"]), Convert.ToString(reader["Advies"])));
+                }
+            }
+            catch {
+                MessageBox.Show("Error reading database at Advies", "Error");
+            }
+            finally {
+                connection.Close();
+            }
+
+            tempList.Sort(delegate(Advies p1, Advies p2) {
+                return p1.Omschrijving.CompareTo(p2.Omschrijving);
+            });
+
+            return tempList;
+        }
+
+        // Alle Flows uit database halen
+        public List<Flow> GetAllFlows() {
+            String sql = "SELECT * FROM [Flow]";
+            OleDbCommand command = new OleDbCommand(sql, connection);
+            List<Flow> tempList = new List<Flow>();
+
+            try {
+                connection.Open();
+                OleDbDataReader reader = command.ExecuteReader();
+
+                while (reader.Read()) {
+                    tempList.Add(new Flow(Convert.ToInt32(reader["FlowID"]), Convert.ToString(reader["Flow"])));
+                }
+            }
+            catch {
+                MessageBox.Show("Error reading database at Flow", "Error");
+            }
+            finally {
+                connection.Close();
+            }
+
+            tempList.Sort(delegate(Flow p1, Flow p2) {
+                return p1.Omschrijving.CompareTo(p2.Omschrijving);
+            });
+
             return tempList;
         }
 

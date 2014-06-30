@@ -26,6 +26,14 @@ namespace VTM
         public List<Locatie> Locaties { get { return locaties; } }
         private List<Account> accounts;
         public List<Account> Accounts { get { return accounts; } }
+        private List<Werknemer> werknemers;
+        public List<Werknemer> Werknemers { get { return werknemers; } }
+        private List<Resultaat> resultaten;
+        public List<Resultaat> Resultaten { get { return resultaten; } }
+        private List<Advies> adviesen;
+        public List<Advies> Adviesen { get { return adviesen; } }
+        private List<Flow> flows;
+        public List<Flow> Flows { get { return flows; } }
         private Database database;
         public Account LoggedIn { get; set; }
 
@@ -40,6 +48,10 @@ namespace VTM
             this.regios = database.GetAllRegios();
             this.locaties = database.GetAllLocaties();
             this.accounts = database.GetAllAccounts();
+            this.werknemers = database.GetAllWerknemers();
+            this.resultaten = database.GetAllResultaten();
+            this.adviesen = database.GetAllAdviesen();
+            this.flows = database.GetAllFlows();
             database.BindOpdrachtgeverData();
         }
 

@@ -21,6 +21,7 @@ namespace VTM
             this.manager = manager;
             lblLoggedInAs.Text = manager.LoggedIn.Voornaam + " " + manager.LoggedIn.Achternaam;
             SetUpGui();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void SetUpGui()
@@ -63,9 +64,10 @@ namespace VTM
             cbOrigin.Items.Clear();
             cbOrigin.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbOrigin.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            foreach (Herkomst h in manager.Herkomsten) {
-                cbOrigin.Items.Add(h.Naam);
-                cbOrigin.AutoCompleteCustomSource.Add(h.Naam);
+ 
+            foreach (Herkomst herkomst in manager.Herkomsten) {
+                cbOrigin.Items.Add(herkomst.Naam);
+                cbOrigin.AutoCompleteCustomSource.Add(herkomst.Naam);
             }
 
             // Ladingen
@@ -86,13 +88,48 @@ namespace VTM
                 cbSupplier.AutoCompleteCustomSource.Add(s.Naam);
             }
 
+            // Werknemers
+            cbEmployee.Items.Clear();
+            cbEmployee.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbEmployee.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            foreach (Werknemer w in manager.Werknemers) {
+                cbEmployee.Items.Add(w.Naam);
+                cbEmployee.AutoCompleteCustomSource.Add(w.Naam);
+            }
+
+            // Resultaten
+            cbResult.Items.Clear();
+            cbResult.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbResult.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            foreach (Resultaat r in manager.Resultaten) {
+                cbResult.Items.Add(r.ResultaatNaam);
+                cbResult.AutoCompleteCustomSource.Add(r.ResultaatNaam);
+            }
+
+            // Adviesen
+            cbAdvice.Items.Clear();
+            cbAdvice.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbAdvice.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            foreach (Advies a in manager.Adviesen) {
+                cbAdvice.Items.Add(a.Omschrijving);
+                cbAdvice.AutoCompleteCustomSource.Add(a.Omschrijving);
+            }
+
+            // Flows
+            cbFlow.Items.Clear();
+            cbFlow.AutoCompleteMode = AutoCompleteMode.Suggest;
+            cbFlow.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            foreach (Flow f in manager.Flows) {
+                cbFlow.Items.Add(f.Omschrijving);
+                cbFlow.AutoCompleteCustomSource.Add(f.Omschrijving);
+            }
+
             // Locaties
             cbLocation.AutoCompleteMode = AutoCompleteMode.Suggest;
             cbLocation.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
             // Weeknr
             tbWeeknr.Text = Convert.ToString(getWeekNr(DateTime.Now));
-
         }
 
         // Weeknummer berekenen
@@ -142,204 +179,110 @@ namespace VTM
             }
         }
 
+        public void CheckTextbox(TextBox tb, CheckBox cbx) {
+            if (tb.Text != "") {
+                int number;
+                if (!Int32.TryParse(tb.Text, out number)) {
+                    MessageBox.Show("Vul een getal in!");
+                    tb.Text = "";
+                    tb.Focus();
+                    cbx.Checked = false;
+                }else {
+                    cbx.Checked = true;
+                }
+            }else {
+                cbx.Checked = false;
+            }
+        }
+
         //****************************************** Checks of gaswaarde is ingevuld ************************************************************************
 
         private void tbPid_TextChanged(object sender, EventArgs e) {
-            if (tbPid.Text != "") {
-                cbxPid.Checked = true;
-            }
-            else {
-                cbxPid.Checked = false;
-            }
+            CheckTextbox(tbPid, cbxPid);
         }
 
         private void tbOxygen_TextChanged(object sender, EventArgs e) {
-            if (tbOxygen.Text != "") {
-                cbxOxygen.Checked = true;
-            }
-            else {
-                cbxOxygen.Checked = false;
-            }
+            CheckTextbox(tbOxygen, cbxOxygen);
         }
 
         private void tbExplosion_TextChanged(object sender, EventArgs e) {
-            if (tbExplosion.Text != "") {
-                cbxExplosion.Checked = true;
-            }
-            else {
-                cbxExplosion.Checked = false;
-            }
+            CheckTextbox(tbExplosion, cbxExplosion);
         }
 
         private void tbCarbonMono_TextChanged(object sender, EventArgs e) {
-            if (tbCarbonMono.Text != "") {
-                cbxCarbonMono.Checked = true;
-            }
-            else {
-                cbxCarbonMono.Checked = false;
-            }
+            CheckTextbox(tbCarbonMono, cbxCarbonMono);
         }
 
         private void tbCarbonDio_TextChanged(object sender, EventArgs e) {
-            if (tbCarbonDio.Text != "") {
-                cbxCarbonDioxide.Checked = true;
-            }
-            else {
-                cbxCarbonDioxide.Checked = false;
-            }
+            CheckTextbox(tbCarbonDio, cbxCarbonDioxide);
         }
 
         private void tbPhosphine_TextChanged(object sender, EventArgs e) {
-            if (tbPhosphine.Text != "") {
-                cbxPhosphine.Checked = true;
-            }
-            else {
-                cbxPhosphine.Checked = false;
-            }
+            CheckTextbox(tbPhosphine, cbxPhosphine);
         }
 
         private void tbAmmonia_TextChanged(object sender, EventArgs e) {
-            if (tbAmmonia.Text != "") {
-                cbxAmmonia.Checked = true;
-            }
-            else {
-                cbxAmmonia.Checked = false;
-            }
+            CheckTextbox(tbAmmonia, cbxAmmonia);
         }
 
         private void tbMethylbromide_TextChanged(object sender, EventArgs e) {
-            if (tbMethylbromide.Text != "") {
-                cbxMethylbromide.Checked = true;
-            }
-            else {
-                cbxMethylbromide.Checked = false;
-            }
+            CheckTextbox(tbMethylbromide, cbxMethylbromide);
         }
 
         private void tbFormaldehyde_TextChanged(object sender, EventArgs e) {
-            if (tbFormaldehyde.Text != "") {
-                cbxFormaldehyde.Checked = true;
-            }
-            else {
-                cbxFormaldehyde.Checked = false;
-            }
+            CheckTextbox(tbFormaldehyde, cbxFormaldehyde);
         }
 
         private void tbChloropicrine_TextChanged(object sender, EventArgs e) {
-            if (tbChloropicrine.Text != "") {
-                cbxChloropicrine.Checked = true;
-            }
-            else {
-                cbxChloropicrine.Checked = false;
-            }
+            CheckTextbox(tbChloropicrine, cbxChloropicrine);
         }
 
         private void tbBenzene_TextChanged(object sender, EventArgs e) {
-            if (tbBenzene.Text != "") {
-                cbxBenzene.Checked = true;
-            }
-            else {
-                cbxBenzene.Checked = false;
-            }
+            CheckTextbox(tbBenzene, cbxBenzene);
         }
 
         private void tbToluene_TextChanged(object sender, EventArgs e) {
-            if (tbToluene.Text != "") {
-                cbxToluene.Checked = true;
-            }
-            else {
-                cbxToluene.Checked = false;
-            }
+            CheckTextbox(tbToluene, cbxToluene);
         }
 
         private void tbDiChloroEthane_TextChanged(object sender, EventArgs e) {
-            if (tbDiChloroEthane.Text != "") {
-                cbxDiChloroEthane.Checked = true;
-            }
-            else {
-                cbxDiChloroEthane.Checked = false;
-            }
+            CheckTextbox(tbDiChloroEthane, cbxDiChloroEthane);
         }
 
         private void tbSulfurylFluoride_TextChanged(object sender, EventArgs e) {
-            if (tbSulfurylFluoride.Text != "") {
-                cbxSulfurylfluoride.Checked = true;
-            }
-            else {
-                cbxSulfurylfluoride.Checked = false;
-            }
+            CheckTextbox(tbSulfurylFluoride, cbxSulfurylfluoride);
         }
 
         private void tbDichloroMethane_TextChanged(object sender, EventArgs e) {
-            if (tbDichloroMethane.Text != "") {
-                cbxDichloromethane.Checked = true;
-            }
-            else {
-                cbxDichloromethane.Checked = false;
-            }
+            CheckTextbox(tbDichloroMethane, cbxDichloromethane);
         }
 
         private void tbEthyleneOxide_TextChanged(object sender, EventArgs e) {
-            if (tbEthyleneOxide.Text != "") {
-                cbxEthyleneOxide.Checked = true;
-            }
-            else {
-                cbxEthyleneOxide.Checked = false;
-            }
+            CheckTextbox(tbEthyleneOxide, cbxEthyleneOxide);
         }
 
         private void tbCyclohexane_TextChanged(object sender, EventArgs e) {
-            if (tbCyclohexane.Text != "") {
-                cbxCyclohexane.Checked = true;
-            }
-            else {
-                cbxCyclohexane.Checked = false;
-            }
+            CheckTextbox(tbCyclohexane, cbxCyclohexane);
         }
 
         private void tbStyrene_TextChanged(object sender, EventArgs e) {
-            if (tbStyrene.Text != "") {
-                cbxStyrene.Checked = true;
-            }
-            else {
-                cbxStyrene.Checked = false;
-            }
+            CheckTextbox(tbStyrene, cbxStyrene);
         }
 
         private void tbXylene_TextChanged(object sender, EventArgs e) {
-            if (tbXylene.Text != "") {
-                cbxXylene.Checked = true;
-            }
-            else {
-                cbxXylene.Checked = false;
-            }
+            CheckTextbox(tbXylene, cbxXylene);
         }
 
         private void tbAlphaPinene_TextChanged(object sender, EventArgs e) {
-            if (tbAlphaPinene.Text != "") {
-                cbxAlphaPinene.Checked = true;
-            }
-            else {
-                cbxAlphaPinene.Checked = false;
-            }
+            CheckTextbox(tbAlphaPinene, cbxAlphaPinene);
         }
 
         private void tbIsoPentane_TextChanged(object sender, EventArgs e) {
-            if (tbIsoPentane.Text != "") {
-                cbxIsoPentane.Checked = true;
-            }
-            else {
-                cbxIsoPentane.Checked = false;
-            }
+            CheckTextbox(tbIsoPentane, cbxIsoPentane);
         }
 
         private void tbHydrogen_TextChanged(object sender, EventArgs e) {
-            if (tbHydrogen.Text != "") {
-                cbxHydrogen.Checked = true;
-            }
-            else {
-                cbxHydrogen.Checked = false;
-            }
+            CheckTextbox(tbHydrogen, cbxHydrogen);
         }
 
     }
