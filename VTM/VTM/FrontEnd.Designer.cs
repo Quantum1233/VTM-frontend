@@ -72,12 +72,16 @@
             this.lblTemp = new System.Windows.Forms.Label();
             this.lblMemo = new System.Windows.Forms.Label();
             this.gbBot = new System.Windows.Forms.GroupBox();
+            this.nmrOntluchtingsTijd = new System.Windows.Forms.NumericUpDown();
+            this.label93 = new System.Windows.Forms.Label();
             this.cbVentilation = new System.Windows.Forms.CheckBox();
             this.tbMemo = new System.Windows.Forms.RichTextBox();
             this.tbTemp = new System.Windows.Forms.TextBox();
-            this.tbDate = new System.Windows.Forms.TextBox();
             this.tbTime = new System.Windows.Forms.TextBox();
             this.gbControls = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnScan = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.gbRecordControl = new System.Windows.Forms.GroupBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -224,13 +228,13 @@
             this.cbxPid = new System.Windows.Forms.CheckBox();
             this.lblLoggedInAs = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnScan = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label94 = new System.Windows.Forms.Label();
             this.gbTop.SuspendLayout();
             this.gbMid.SuspendLayout();
             this.gbBot.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrOntluchtingsTijd)).BeginInit();
             this.gbControls.SuspendLayout();
             this.gbRecordControl.SuspendLayout();
             this.gbGassen.SuspendLayout();
@@ -288,8 +292,10 @@
             this.tbMID.Location = new System.Drawing.Point(609, 17);
             this.tbMID.Margin = new System.Windows.Forms.Padding(2);
             this.tbMID.Name = "tbMID";
+            this.tbMID.ReadOnly = true;
             this.tbMID.Size = new System.Drawing.Size(108, 20);
             this.tbMID.TabIndex = 9;
+            this.tbMID.Text = "<New>";
             // 
             // lblMID
             // 
@@ -370,6 +376,7 @@
             this.tbWeeknr.Name = "tbWeeknr";
             this.tbWeeknr.Size = new System.Drawing.Size(53, 20);
             this.tbWeeknr.TabIndex = 14;
+            this.tbWeeknr.TextChanged += new System.EventHandler(this.tbWeeknr_TextChanged);
             // 
             // gbMid
             // 
@@ -393,7 +400,7 @@
             this.gbMid.Controls.Add(this.lblResult);
             this.gbMid.Controls.Add(this.lblAdvice);
             this.gbMid.Controls.Add(this.lblCargo);
-            this.gbMid.Location = new System.Drawing.Point(9, 181);
+            this.gbMid.Location = new System.Drawing.Point(9, 171);
             this.gbMid.Margin = new System.Windows.Forms.Padding(2);
             this.gbMid.Name = "gbMid";
             this.gbMid.Padding = new System.Windows.Forms.Padding(2);
@@ -630,7 +637,7 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(5, 25);
+            this.lblDate.Location = new System.Drawing.Point(3, 17);
             this.lblDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(41, 13);
@@ -640,7 +647,7 @@
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(5, 48);
+            this.lblTime.Location = new System.Drawing.Point(4, 59);
             this.lblTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(27, 13);
@@ -650,7 +657,7 @@
             // lblTemp
             // 
             this.lblTemp.AutoSize = true;
-            this.lblTemp.Location = new System.Drawing.Point(5, 77);
+            this.lblTemp.Location = new System.Drawing.Point(4, 88);
             this.lblTemp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTemp.Name = "lblTemp";
             this.lblTemp.Size = new System.Drawing.Size(70, 13);
@@ -660,7 +667,7 @@
             // lblMemo
             // 
             this.lblMemo.AutoSize = true;
-            this.lblMemo.Location = new System.Drawing.Point(140, 25);
+            this.lblMemo.Location = new System.Drawing.Point(140, 38);
             this.lblMemo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMemo.Name = "lblMemo";
             this.lblMemo.Size = new System.Drawing.Size(83, 13);
@@ -669,27 +676,46 @@
             // 
             // gbBot
             // 
+            this.gbBot.Controls.Add(this.label94);
+            this.gbBot.Controls.Add(this.dateTimePicker1);
+            this.gbBot.Controls.Add(this.nmrOntluchtingsTijd);
             this.gbBot.Controls.Add(this.cbVentilation);
             this.gbBot.Controls.Add(this.tbMemo);
+            this.gbBot.Controls.Add(this.label93);
             this.gbBot.Controls.Add(this.tbTemp);
             this.gbBot.Controls.Add(this.lblMemo);
-            this.gbBot.Controls.Add(this.tbDate);
             this.gbBot.Controls.Add(this.tbTime);
             this.gbBot.Controls.Add(this.lblTime);
             this.gbBot.Controls.Add(this.lblTemp);
             this.gbBot.Controls.Add(this.lblDate);
-            this.gbBot.Location = new System.Drawing.Point(9, 429);
+            this.gbBot.Location = new System.Drawing.Point(9, 412);
             this.gbBot.Margin = new System.Windows.Forms.Padding(2);
             this.gbBot.Name = "gbBot";
             this.gbBot.Padding = new System.Windows.Forms.Padding(2);
-            this.gbBot.Size = new System.Drawing.Size(451, 122);
+            this.gbBot.Size = new System.Drawing.Size(451, 139);
             this.gbBot.TabIndex = 24;
             this.gbBot.TabStop = false;
+            // 
+            // nmrOntluchtingsTijd
+            // 
+            this.nmrOntluchtingsTijd.Location = new System.Drawing.Point(375, 15);
+            this.nmrOntluchtingsTijd.Name = "nmrOntluchtingsTijd";
+            this.nmrOntluchtingsTijd.Size = new System.Drawing.Size(71, 20);
+            this.nmrOntluchtingsTijd.TabIndex = 30;
+            // 
+            // label93
+            // 
+            this.label93.AutoSize = true;
+            this.label93.Location = new System.Drawing.Point(255, 17);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(114, 13);
+            this.label93.TabIndex = 29;
+            this.label93.Text = "Ontluchtingstijd (Uren):";
             // 
             // cbVentilation
             // 
             this.cbVentilation.AutoSize = true;
-            this.cbVentilation.Location = new System.Drawing.Point(142, 97);
+            this.cbVentilation.Location = new System.Drawing.Point(7, 115);
             this.cbVentilation.Margin = new System.Windows.Forms.Padding(2);
             this.cbVentilation.Name = "cbVentilation";
             this.cbVentilation.Size = new System.Drawing.Size(292, 17);
@@ -699,7 +725,7 @@
             // 
             // tbMemo
             // 
-            this.tbMemo.Location = new System.Drawing.Point(142, 42);
+            this.tbMemo.Location = new System.Drawing.Point(142, 55);
             this.tbMemo.Margin = new System.Windows.Forms.Padding(2);
             this.tbMemo.Name = "tbMemo";
             this.tbMemo.Size = new System.Drawing.Size(305, 51);
@@ -708,26 +734,19 @@
             // 
             // tbTemp
             // 
-            this.tbTemp.Location = new System.Drawing.Point(80, 74);
+            this.tbTemp.Location = new System.Drawing.Point(79, 85);
             this.tbTemp.Margin = new System.Windows.Forms.Padding(2);
             this.tbTemp.Name = "tbTemp";
-            this.tbTemp.Size = new System.Drawing.Size(45, 20);
+            this.tbTemp.Size = new System.Drawing.Size(37, 20);
             this.tbTemp.TabIndex = 2;
-            // 
-            // tbDate
-            // 
-            this.tbDate.Location = new System.Drawing.Point(50, 22);
-            this.tbDate.Margin = new System.Windows.Forms.Padding(2);
-            this.tbDate.Name = "tbDate";
-            this.tbDate.Size = new System.Drawing.Size(76, 20);
-            this.tbDate.TabIndex = 0;
+            this.tbTemp.TextChanged += new System.EventHandler(this.tbTemp_TextChanged);
             // 
             // tbTime
             // 
-            this.tbTime.Location = new System.Drawing.Point(50, 48);
+            this.tbTime.Location = new System.Drawing.Point(43, 55);
             this.tbTime.Margin = new System.Windows.Forms.Padding(2);
             this.tbTime.Name = "tbTime";
-            this.tbTime.Size = new System.Drawing.Size(76, 20);
+            this.tbTime.Size = new System.Drawing.Size(73, 20);
             this.tbTime.TabIndex = 1;
             // 
             // gbControls
@@ -742,6 +761,42 @@
             this.gbControls.Size = new System.Drawing.Size(265, 161);
             this.gbControls.TabIndex = 26;
             this.gbControls.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Image = global::VTM.Properties.Resources.ic_mail1;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(3, 14);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(258, 45);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Mail naar planning";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnScan
+            // 
+            this.btnScan.Image = global::VTM.Properties.Resources._50c5a38510091_Turboscan;
+            this.btnScan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnScan.Location = new System.Drawing.Point(3, 61);
+            this.btnScan.Margin = new System.Windows.Forms.Padding(2);
+            this.btnScan.Name = "btnScan";
+            this.btnScan.Size = new System.Drawing.Size(258, 45);
+            this.btnScan.TabIndex = 26;
+            this.btnScan.Text = "Scan";
+            this.btnScan.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Image = global::VTM.Properties.Resources._6a0120a9370e90970b014e5f81703d970c_800wi;
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSave.Location = new System.Drawing.Point(3, 108);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(258, 45);
+            this.btnSave.TabIndex = 25;
+            this.btnSave.Text = "Record Opslaan";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // gbRecordControl
             // 
@@ -2211,50 +2266,30 @@
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Image = global::VTM.Properties.Resources.ic_mail1;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(3, 14);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(258, 45);
-            this.button1.TabIndex = 28;
-            this.button1.Text = "Mail naar planning";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // btnScan
-            // 
-            this.btnScan.Image = global::VTM.Properties.Resources._50c5a38510091_Turboscan;
-            this.btnScan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnScan.Location = new System.Drawing.Point(3, 61);
-            this.btnScan.Margin = new System.Windows.Forms.Padding(2);
-            this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(258, 45);
-            this.btnScan.TabIndex = 26;
-            this.btnScan.Text = "Scan";
-            this.btnScan.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Image = global::VTM.Properties.Resources._6a0120a9370e90970b014e5f81703d970c_800wi;
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.Location = new System.Drawing.Point(3, 108);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(258, 45);
-            this.btnSave.TabIndex = 25;
-            this.btnSave.Text = "Record Opslaan";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::VTM.Properties.Resources.Untitled_5;
+            this.pictureBox2.Image = global::VTM.Properties.Resources.Untitled_21;
             this.pictureBox2.Location = new System.Drawing.Point(469, 119);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(266, 63);
             this.pictureBox2.TabIndex = 34;
             this.pictureBox2.TabStop = false;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(49, 13);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 31;
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Location = new System.Drawing.Point(119, 88);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(18, 13);
+            this.label94.TabIndex = 32;
+            this.label94.Text = "°C";
             // 
             // FrontEnd
             // 
@@ -2288,6 +2323,7 @@
             this.gbMid.PerformLayout();
             this.gbBot.ResumeLayout(false);
             this.gbBot.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrOntluchtingsTijd)).EndInit();
             this.gbControls.ResumeLayout(false);
             this.gbRecordControl.ResumeLayout(false);
             this.gbGassen.ResumeLayout(false);
@@ -2346,7 +2382,6 @@
         private System.Windows.Forms.CheckBox cbVentilation;
         private System.Windows.Forms.RichTextBox tbMemo;
         private System.Windows.Forms.TextBox tbTemp;
-        private System.Windows.Forms.TextBox tbDate;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.GroupBox gbControls;
         private System.Windows.Forms.Button btnScan;
@@ -2500,6 +2535,10 @@
         private System.Windows.Forms.TextBox tbHydrogen;
         private System.Windows.Forms.Label lblLoggedInAs;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.NumericUpDown nmrOntluchtingsTijd;
+        private System.Windows.Forms.Label label93;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label94;
 
     }
 }

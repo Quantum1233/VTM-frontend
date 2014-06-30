@@ -177,11 +177,6 @@ namespace VTM
                     }
                 }
             }
-
-            Huis test = new Huis(5, "test", true);
-            List<Huis> huizen = new List<Huis>();
-            huizen.Add(test);
-
         }
 
         public void CheckTextbox(TextBox tb, CheckBox cbx) {
@@ -197,6 +192,17 @@ namespace VTM
                 }
             }else {
                 cbx.Checked = false;
+            }
+        }
+
+        private void Parse(TextBox tb) {
+            int number;
+            if (tb.Text != "") {
+                if (!Int32.TryParse(tb.Text, out number)) {
+                    MessageBox.Show("Vul een getal in!");
+                    tb.Text = "";
+                    tb.Focus();
+                }
             }
         }
 
@@ -290,5 +296,17 @@ namespace VTM
             CheckTextbox(tbHydrogen, cbxHydrogen);
         }
 
+        private void tbTemp_TextChanged(object sender, EventArgs e) {
+            Parse(tbTemp);
+        }
+
+        private void tbWeeknr_TextChanged(object sender, EventArgs e) {
+            int number;
+            if (!Int32.TryParse(tbWeeknr.Text, out number)) {
+                MessageBox.Show("Vul een getal in!");
+                tbWeeknr.Text = Convert.ToString(getWeekNr(DateTime.Now));
+                tbWeeknr.Focus();
+            }
+        }
     }
 }
