@@ -24,8 +24,10 @@ namespace VTM
             SetUpGui();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.loginForm = loginForm;
+            SetUpMetingGUI(manager.GetMeting(0));
         }
 
+        // GUI instellingen goed zetten
         private void SetUpGui()
         {
             // Meetmethodes
@@ -134,6 +136,38 @@ namespace VTM
             tbWeeknr.Text = Convert.ToString(getWeekNr(DateTime.Now));
         }
 
+        // Meting inladen in de GUI
+        private void SetUpMetingGUI(Meting meting) {
+            lbxMMethod.SelectedItem = meting.MeetMateriaal;
+            cbMType.Text = meting.SoortMeting.Naam;
+            cbMLocation.Text = meting.LocatieMeting.Naam;
+            cbNumberType.Text = meting.ContainerKenteken;
+            cbNumber.Text = meting.Container.ContainerNummer;
+            tbMID.Text = Convert.ToString(meting.MetingId);
+            tbWeeknr.Text = Convert.ToString(getWeekNr(meting.Datum));
+            tbPrice.Text = Convert.ToString(meting.Prijs);
+            cbxAirSample.Checked = meting.Luchtmonster;
+            tbFyco.Text = meting.Fyconummer;
+            tbOrder.Text = meting.Ordernummer;
+            cbOrigin.Text = meting.Herkomst.Naam;
+            cbOrderCompany.Text = meting.Opdrachtgever.Naam;
+            cbSupplier.Text = meting.Supplier.Naam;
+            cbCargo.Text = meting.Lading.Naam;
+            cbLocation.Text = meting.Locatie.Naam;
+            cbEmployee.Text = meting.Werknemer.Naam;
+            tbOldSeal.Text = meting.OudZegel;
+            tbNewSeal.Text = meting.NieuwZegel;
+            cbResult.Text = meting.Resultaat.ResultaatNaam;
+            cbAdvice.Text = meting.Advies.Omschrijving;
+            cbFlow.Text = meting.Flow.Omschrijving;
+            dtDatum.Value = meting.Datum;
+            tbTime.Text = meting.Tijd.ToString();
+            tbOntluchtingsTijd.Text = Convert.ToString(meting.OntluchtingsTijd);
+            tbTemp.Text = Convert.ToString(meting.Temperatuur);
+            tbMemo.Text = meting.Memo;
+            cbxVentilation.Checked = meting.ContainerVentilatie;
+        }
+
         // Weeknummer berekenen
         private int getWeekNr(DateTime date)
         {
@@ -179,6 +213,11 @@ namespace VTM
                     }
                 }
             }
+
+            Huis test = new Huis(5, "test", true);
+            List<Huis> huizen = new List<Huis>();
+            huizen.Add(test);
+
         }
 
         public void CheckTextbox(TextBox tb, CheckBox cbx) {
@@ -197,14 +236,12 @@ namespace VTM
             }
         }
 
-        private void Parse(TextBox tb) {
+        public void Parse(TextBox tb) {
             int number;
-            if (tb.Text != "") {
-                if (!Int32.TryParse(tb.Text, out number)) {
-                    MessageBox.Show("Vul een getal in!");
-                    tb.Text = "";
-                    tb.Focus();
-                }
+            if (!Int32.TryParse(tb.Text, out number)) {
+                MessageBox.Show("Vul een getal in!");
+                tb.Text = "";
+                tb.Focus();
             }
         }
 
@@ -298,31 +335,21 @@ namespace VTM
             CheckTextbox(tbHydrogen, cbxHydrogen);
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        private void tbTemp_TextChanged(object sender, EventArgs e) {
-            Parse(tbTemp);
-        }
-
-        private void tbWeeknr_TextChanged(object sender, EventArgs e) {
-            int number;
-            if (!Int32.TryParse(tbWeeknr.Text, out number)) {
-                MessageBox.Show("Vul een getal in!");
-                tbWeeknr.Text = Convert.ToString(getWeekNr(DateTime.Now));
-                tbWeeknr.Focus();
-            }
-        }
-=======
-=======
->>>>>>> a0b9352f7fcfafc1c462166baf35ba2db1089756
         private void FrontEnd_FormClosed(object sender, FormClosedEventArgs e)
         {
             loginForm.Close();
         }
 
-<<<<<<< HEAD
->>>>>>> a0b9352f7fcfafc1c462166baf35ba2db1089756
-=======
->>>>>>> a0b9352f7fcfafc1c462166baf35ba2db1089756
+        private void tbTemp_TextChanged(object sender, EventArgs e) {
+            //Parse(tbTemp);
+        }
+
+        private void tbWeeknr_TextChanged(object sender, EventArgs e) {
+            //Parse(tbTemp);
+        }
+
+        private void button2_Click(object sender, EventArgs e) {
+            SetUpMetingGUI(manager.GetMeting(Convert.ToInt32(tbMID.Text) - 1));
+        }
     }
 }

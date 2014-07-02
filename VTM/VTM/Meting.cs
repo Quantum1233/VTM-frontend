@@ -19,7 +19,7 @@ namespace VTM {
         public Opdrachtgever Opdrachtgever { get; set; }
         public Locatie Locatie { get; set; }
         public Lading Lading { get; set; }
-        public int Ontluchting { get; set; }
+        public int OntluchtingsTijd { get; set; }
         public string OudZegel { get; set; }
         public string NieuwZegel { get; set; }
         public bool ContainerVentilatie { get; set; }
@@ -36,11 +36,19 @@ namespace VTM {
         public double Prijs { get; set; }
         public bool Luchtmonster { get; set; }
 
-        public Meting(int MetingId, DateTime Datum, DateTime Tijd, int Temperatuur, string Fyconummer, string Ordernummer, Container container,
-            Werknemer Werknemer, Resultaat Resultaat, Advies Advies, Opdrachtgever Opdrachtgever, Locatie Locatie, Lading Lading, int Ontluchting,
-            string OudZegel, string NieuwZegel, bool ContainerVentilatie, Herkomst Herkomst, string Memo, string MeetMateriaal, DateTime DateNow,
-            bool Ontgassing, SoortMeting SoortMeting, LocatieMeting LocatieMeting, string ContainerKenteken, Supplier Supplier, Flow Flow, double Prijs, bool Luchtmonster) {
-
+        public Meting() {
+            Container = new Container(0, "");
+            Werknemer = new Werknemer(0, "");
+            Resultaat = new Resultaat(0, "");
+            Advies = new Advies(0, "");
+            Opdrachtgever = new Opdrachtgever(0, "");
+            Locatie = new Locatie(0, "", null, 0);
+            Lading = new Lading(0, "");
+            Herkomst = new Herkomst(0, "");
+            SoortMeting = new SoortMeting(0, "");
+            LocatieMeting = new LocatieMeting(0, "");
+            Supplier = new Supplier(0, "");
+            Flow = new Flow(0, "");
         }
-        }
+    }
 }

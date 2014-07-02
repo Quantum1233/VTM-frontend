@@ -20,10 +20,6 @@ namespace VTM {
         }
 
         private void btnLogin_Click(object sender, EventArgs e) {
-            TryLogin();
-        }
-
-        private void TryLogin() {
             if (tbUsername.Text != "") {
                 if (tbPassword.Text != "") {
                     if (manager.LogIn(tbUsername.Text, tbPassword.Text)) {
@@ -44,22 +40,5 @@ namespace VTM {
             }
         }
 
-        private void Login_KeyPress(object sender, KeyPressEventArgs e) {
-            if (Convert.ToInt32(e.KeyChar) == 13) {
-                TryLogin();
-            }
-        }
-
-        private void tbPassword_KeyPress(object sender, KeyPressEventArgs e) {
-            if (Convert.ToInt32(e.KeyChar) == 13) {
-                TryLogin();
-            }
-        }
-
-        private void tbUsername_KeyPress(object sender, KeyPressEventArgs e) {
-            if (Convert.ToInt32(e.KeyChar) == 13) {
-                TryLogin();
-            }
-        }
     }
 }

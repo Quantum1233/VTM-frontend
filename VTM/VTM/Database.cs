@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,6 +13,19 @@ namespace VTM
     {
         private OleDbConnection connection;
         private Manager manager;
+        int ContainerID = 0;
+        int WerknemerID = 0;
+        int ResultaatID = 0;
+        int AdviesID = 0;
+        int OpdrachtgeverID = 0;
+        int LocatieID = 0;
+        int LadingID = 0;
+        int HerkomstID = 0;
+        int SoortmetingID = 0;
+        int LocatieMetingID = 0;
+        int SupplierID = 0;
+        int FlowID = 0;
+        Meting tempMeting;
 
         public Database(Manager manager)
         {
@@ -19,6 +33,7 @@ namespace VTM
             String pad;
             String provider;
             String connectionString;
+            tempMeting = new Meting();
 
             provider = "Provider=Microsoft.ACE.OLEDB.12.0";
             pad = @"Data Source=C:\VanTienenGasmeting_be.accdb"; // VanTienenGasmeting_be.accdb is the name of the database
@@ -482,6 +497,301 @@ namespace VTM
             finally
             {
                 connection.Close();
+            }
+        }
+
+        // Meting uit Database halen
+        public Meting GetMeting(int Id) {
+            Meting tempMeting = new Meting();
+            String sql;
+            if (Id == 0) {
+                sql = "SELECT top 1 * FROM Meting order by MetingID desc";
+            }
+            else{
+                sql = "SELECT * FROM Meting where MetingID = " + Id;
+            }
+
+                OleDbCommand command = new OleDbCommand(sql, connection);
+
+                try {
+                    connection.Open();
+                    OleDbDataReader reader = command.ExecuteReader();
+                    while (reader.Read()) {
+                        tempMeting.MetingId = Convert.ToInt32(reader["MetingID"]);
+                        if (reader["ContainerID"] != System.DBNull.Value) {
+                            ContainerID = Convert.ToInt32(reader["ContainerID"]);
+                        }
+                        if (reader["WerknemerID"] != System.DBNull.Value) {
+                            WerknemerID = Convert.ToInt32(reader["WerknemerID"]);
+                        }
+                        if (reader["ResultaatID"] != System.DBNull.Value) {
+                            ResultaatID = Convert.ToInt32(reader["ResultaatID"]);
+                        }
+                        if (reader["AdviesID"] != System.DBNull.Value) {
+                            AdviesID = Convert.ToInt32(reader["AdviesID"]);
+                        }
+                        if (reader["OpdrachtgeverID"] != System.DBNull.Value) {
+                            OpdrachtgeverID = Convert.ToInt32(reader["OpdrachtgeverID"]);
+                        }
+                        if (reader["LocatieID"] != System.DBNull.Value) {
+                            LocatieID = Convert.ToInt32(reader["LocatieID"]);
+                        }
+                        if (reader["LadingID"] != System.DBNull.Value) {
+                            LadingID = Convert.ToInt32(reader["LadingID"]);
+                        }
+                        if (reader["HerkomstID"] != System.DBNull.Value) {
+                            HerkomstID = Convert.ToInt32(reader["HerkomstID"]);
+                        }
+                        if (reader["SoortMetingID"] != System.DBNull.Value) {
+                            SoortmetingID = Convert.ToInt32(reader["SoortMetingID"]);
+                        }
+                        if (reader["LocatieMetingID"] != System.DBNull.Value) {
+                            LocatieMetingID = Convert.ToInt32(reader["LocatieMetingID"]);
+                        }
+                        if (reader["SupplierID"] != System.DBNull.Value) {
+                            SupplierID = Convert.ToInt32(reader["SupplierID"]);
+                        }
+                        if (reader["FlowID"] != System.DBNull.Value) {
+                            FlowID = Convert.ToInt32(reader["FlowID"]);
+                        }
+
+                        //Thread t1 = new Thread(findValues);
+                        //t1.Start();
+                        //while (!t1.IsAlive) ;
+                        if (reader["Datum"] != System.DBNull.Value) {
+                            tempMeting.Datum = Convert.ToDateTime(reader["Datum"]);
+                        }
+                        if (reader["Tijd"] != System.DBNull.Value) {
+                            tempMeting.Tijd = Convert.ToDateTime(reader["Tijd"]); ;
+                        }
+                        if (reader["Temperatuur"] != System.DBNull.Value) {
+                            tempMeting.Temperatuur = Convert.ToInt32(reader["Temperatuur"]);
+                        }
+                        if (reader["Fyconummer"] != System.DBNull.Value) {
+                            tempMeting.Fyconummer = Convert.ToString(reader["Fyconummer"]);
+                        }
+                        if (reader["Ordernummer"] != System.DBNull.Value) {
+                            tempMeting.Ordernummer = Convert.ToString(reader["Ordernummer"]);
+                        }
+                        if (reader["Ontluchtingstijd"] != System.DBNull.Value) {
+                            tempMeting.OntluchtingsTijd = Convert.ToInt32(reader["Ontluchtingstijd"]);
+                        }
+                        if (reader["Oud Zegel"] != System.DBNull.Value) {
+                            tempMeting.OudZegel = Convert.ToString(reader["Oud Zegel"]);
+                        }
+                        if (reader["Nieuw Zegel"] != System.DBNull.Value) {
+                            tempMeting.NieuwZegel = Convert.ToString(reader["Nieuw Zegel"]);
+                        }
+                        if (reader["ContainerVentilatie"] != System.DBNull.Value) {
+                            tempMeting.ContainerVentilatie = Convert.ToBoolean(reader["ContainerVentilatie"]);
+                        }
+                        if (reader["Memo"] != System.DBNull.Value) {
+                            tempMeting.Memo = Convert.ToString(reader["Memo"]);
+                        }
+                        if (reader["Buisjes/gda"] != System.DBNull.Value) {
+                            tempMeting.MeetMateriaal = Convert.ToString(reader["Buisjes/gda"]);
+                        }
+                        if (reader["DatumNow"] != System.DBNull.Value) {
+                            tempMeting.DateNow = Convert.ToDateTime(reader["DatumNow"]);
+                        }
+                        if (reader["Ontgassing"] != System.DBNull.Value) {
+                            tempMeting.Ontgassing = Convert.ToBoolean(reader["Ontgassing"]);
+                        }
+                        if (reader["Ontgassing"] != System.DBNull.Value) {
+                            tempMeting.ContainerKenteken = Convert.ToString(reader["ContainerKenteken"]);
+                        }
+                        if (reader["ContainerKenteken"] != System.DBNull.Value) {
+                            tempMeting.ContainerKenteken = Convert.ToString(reader["ContainerKenteken"]);
+                        }
+                        if (reader["Prijs"] != System.DBNull.Value) {
+                            tempMeting.Prijs = Convert.ToDouble(reader["Prijs"]);
+                        }
+                        if (reader["Luchtmonster"] != System.DBNull.Value) {
+                            tempMeting.Luchtmonster = Convert.ToBoolean(reader["Luchtmonster"]);
+                        }
+                    }
+                }
+                catch {
+                    MessageBox.Show("Error reading database at Meting", "Error");
+                }
+                finally {
+                    connection.Close();
+                }
+
+                // CONTAINER
+                sql = "SELECT * FROM [Container] where [ContainerID] = " + ContainerID;
+                command = new OleDbCommand(sql, connection);
+
+                try {
+                    connection.Open();
+                    OleDbDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read()) {
+                        tempMeting.Container = new Container(ContainerID, Convert.ToString(reader["Containernummer"]));
+                    }
+                }
+                catch {
+                    MessageBox.Show("Error reading database at OpdrachtgeverSupplier", "Error");
+                }
+                finally {
+                    connection.Close();
+                }
+
+                // Werknemer
+                foreach (Werknemer w in manager.Werknemers) {
+                    if (w.Id == WerknemerID) {
+                        tempMeting.Werknemer = w;
+                    }
+                }
+
+                // Resultaat
+                foreach (Resultaat r in manager.Resultaten) {
+                    if (r.Id == ResultaatID) {
+                        tempMeting.Resultaat = r;
+                    }
+                }
+
+                // Advies
+                foreach (Advies a in manager.Adviesen) {
+                    if (a.Id == AdviesID) {
+                        tempMeting.Advies = a;
+                    }
+                }
+
+                // Opdrachtgever
+                foreach (Opdrachtgever o in manager.Opdrachtgevers) {
+                    if (o.Id == OpdrachtgeverID) {
+                        tempMeting.Opdrachtgever = o;
+                    }
+                }
+
+                // Locatie
+                foreach (Locatie l in manager.Locaties) {
+                    if (l.Id == LocatieID) {
+                        tempMeting.Locatie = l;
+                    }
+                }
+
+                // Lading
+                foreach (Lading l in manager.Ladingen) {
+                    if (l.Id == LadingID) {
+                        tempMeting.Lading = l;
+                    }
+                }
+
+                // Herkomst
+                foreach (Herkomst h in manager.Herkomsten) {
+                    if (h.Id == HerkomstID) {
+                        tempMeting.Herkomst = h;
+                    }
+                }
+
+                // SoortMeting
+                foreach (SoortMeting s in manager.SoortMetingen) {
+                    if (s.Id == SoortmetingID) {
+                        tempMeting.SoortMeting = s;
+                    }
+                }
+
+                // LocatieMeting
+                foreach (LocatieMeting l in manager.LocatieMetingen) {
+                    if (l.Id == LocatieMetingID) {
+                        tempMeting.LocatieMeting = l;
+                    }
+                }
+
+                // Supplier
+                foreach (Supplier s in manager.Suppliers) {
+                    if (s.Id == SupplierID) {
+                        tempMeting.Supplier = s;
+                    }
+                }
+
+                // Flow
+                foreach (Flow f in manager.Flows) {
+                    if (f.FlowID == FlowID) {
+                        tempMeting.Flow = f;
+                    }
+                }
+            return tempMeting;
+        }
+
+        public void findValues() {
+            // Werknemer
+            foreach (Werknemer w in manager.Werknemers) {
+                if (w.Id == WerknemerID) {
+                    tempMeting.Werknemer = w;
+                }
+            }
+
+            // Resultaat
+            foreach (Resultaat r in manager.Resultaten) {
+                if (r.Id == ResultaatID) {
+                    tempMeting.Resultaat = r;
+                }
+            }
+
+            // Advies
+            foreach (Advies a in manager.Adviesen) {
+                if (a.Id == AdviesID) {
+                    tempMeting.Advies = a;
+                }
+            }
+
+            // Opdrachtgever
+            foreach (Opdrachtgever o in manager.Opdrachtgevers) {
+                if (o.Id == OpdrachtgeverID) {
+                    tempMeting.Opdrachtgever = o;
+                }
+            }
+
+            // Locatie
+            foreach (Locatie l in manager.Locaties) {
+                if (l.Id == LocatieID) {
+                    tempMeting.Locatie = l;
+                }
+            }
+
+            // Lading
+            foreach (Lading l in manager.Ladingen) {
+                if (l.Id == LadingID) {
+                    tempMeting.Lading = l;
+                }
+            }
+
+            // Herkomst
+            foreach (Herkomst h in manager.Herkomsten) {
+                if (h.Id == HerkomstID) {
+                    tempMeting.Herkomst = h;
+                }
+            }
+
+            // SoortMeting
+            foreach (SoortMeting s in manager.SoortMetingen) {
+                if (s.Id == SoortmetingID) {
+                    tempMeting.SoortMeting = s;
+                }
+            }
+
+            // LocatieMeting
+            foreach (LocatieMeting l in manager.LocatieMetingen) {
+                if (l.Id == LocatieMetingID) {
+                    tempMeting.LocatieMeting = l;
+                }
+            }
+
+            // Supplier
+            foreach (Supplier s in manager.Suppliers){
+                if(s.Id == SupplierID){
+                    tempMeting.Supplier = s;
+                }
+            }
+
+            // Flow
+            foreach (Flow f in manager.Flows) {
+                if (f.FlowID == FlowID) {
+                    tempMeting.Flow = f;
+                }
             }
         }
     }
