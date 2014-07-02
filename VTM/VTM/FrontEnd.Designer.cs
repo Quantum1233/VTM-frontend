@@ -2317,6 +2317,7 @@
             this.MaximizeBox = false;
             this.Name = "FrontEnd";
             this.Text = "Van Tienen Milieuadvies";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrontEnd_FormClosed);
             this.gbTop.ResumeLayout(false);
             this.gbTop.PerformLayout();
             this.gbMid.ResumeLayout(false);

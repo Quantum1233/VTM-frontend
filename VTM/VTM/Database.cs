@@ -21,7 +21,7 @@ namespace VTM
             String connectionString;
 
             provider = "Provider=Microsoft.ACE.OLEDB.12.0";
-            pad = @"Data Source=C:\Users\msi\Desktop\VT-M\VanTienenGasmeting_be.accdb"; // VanTienenGasmeting_be.accdb is the name of the database
+            pad = @"Data Source=C:\VanTienenGasmeting_be.accdb"; // VanTienenGasmeting_be.accdb is the name of the database
 
             connectionString = provider + ";" + pad;
 
@@ -38,9 +38,9 @@ namespace VTM
                 connection.Open(); // open the db connection
                 command.ExecuteNonQuery(); // run the command
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Database connection error", "Error");
+                MessageBox.Show(ex.Message);//"Database connection error", "Error");
             }
             finally
             {
@@ -65,9 +65,9 @@ namespace VTM
                     tempList.Add(new Opdrachtgever(Convert.ToInt32(reader["OpdrachtgeverID"]), Convert.ToString(reader["Naam"])));
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Error reading database", "Error");
+                MessageBox.Show(ex.Message);//"Database connection error", "Error");
             }
             finally
             {
