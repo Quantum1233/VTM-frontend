@@ -299,6 +299,7 @@ namespace VTM
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         private void tbTemp_TextChanged(object sender, EventArgs e) {
             Parse(tbTemp);
         }
@@ -312,11 +313,16 @@ namespace VTM
             }
         }
 =======
+=======
+>>>>>>> a0b9352f7fcfafc1c462166baf35ba2db1089756
         private void FrontEnd_FormClosed(object sender, FormClosedEventArgs e)
         {
             loginForm.Close();
         }
 
+<<<<<<< HEAD
+>>>>>>> a0b9352f7fcfafc1c462166baf35ba2db1089756
+=======
 >>>>>>> a0b9352f7fcfafc1c462166baf35ba2db1089756
     }
 }
